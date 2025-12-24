@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: transparent;
+            overflow: hidden;
+            height: 100vh;
+        }
+        
+        .snowflake {
+            position: absolute;
+            color: #ffffff;
+            font-size: 20px;
+            opacity: 0.8;
+            animation: fall linear infinite;
+        }
+        
+        @keyframes fall {
+            to { transform: translateY(100vh) rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <script>
+        function createSnowflake() {
+            const snowflake = document.createElement('div');
+            snowflake.className = 'snowflake';
+            snowflake.innerHTML = '❄';
+            snowflake.style.left = Math.random() * 100 + 'vw';
+            snowflake.style.fontSize = (Math.random() * 20 + 10) + 'px';
+            snowflake.style.animationDuration = (Math.random() * 5 + 5) + 's';
+            snowflake.style.opacity = Math.random() * 0.7 + 0.3;
+            
+            document.body.appendChild(snowflake);
+            
+            setTimeout(() => {
+                snowflake.remove();
+            }, 10000);
+        }
+        
+        // Создаем снежинки
+        setInterval(createSnowflake, 100);
+        
+        // Первые снежинки
+        for(let i = 0; i < 50; i++) {
+            setTimeout(createSnowflake, Math.random() * 2000);
+        }
+    </script>
+</body>
+</html>
